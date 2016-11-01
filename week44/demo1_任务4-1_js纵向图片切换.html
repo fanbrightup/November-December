@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .content{
+      position:relative;
+      width:800px;
+      height:400px;
+      border:1px solid black;
+    }
+    img{
+      width:500px;
+      height:400px;
+      float:left;
+    }
+    .list{
+      margin:0;
+      padding:0;
+      width:298px;
+      height:400px;
+      border:1px solid lime;
+      display:inline-block;
+      list-style-type:none;
+    }
+    .list li{
+      padding:0;
+      height:80px;
+      text-align:center;
+      line-height:80px;
+    }
+     li+li{
+      border-top:1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <img id="img" src="../Pictures/1.jpg" alt="">
+    <ul class="list">
+      <li title="1.jpg">pic1</li>
+      <li title="2.jpg">pic2</li>
+      <li title="3.jpg">pic3</li>
+      <li title="4.jpg">pic4</li>
+      <li title="5.jpg">pic5</li>
+    </ul>
+  </div>
+  <script>
+      var img = document.querySelector('#img');
+      var li = document.querySelectorAll('.list li');
+      // 将伪数组转化为数组，使其能够使用forEach，push等数组才有的方法
+      var li_arr = Array.prototype.slice.call(li);
+      var flag = 0;
+      li_arr[0].style.background="blue";
+      //  使用forEach来为每一个元素添加事件，先复位所有list背景，并更改被选中的条目颜色
+      li_arr.forEach((e,i,a)=>{
+        e.addEventListener('click',()=>{
+              cleanBackground(a);
+              change(e,i);
+        })
+      });
+      // 使用for循环实现添加事件
+      // for(let i =0; i<li.length;i++){
+      //   li[i].addEventListener('click',()=>{
+      //     img.src="../Pictures/"+li[i].title;
+      //   })
+      // }
+
+      // 清除列表栏的背景
+      function cleanBackground(arr){
+        arr.forEach((e,i,a)=>{
+          e.style.background = '';
+        });
+      }
+      function change(element,index){
+        img.src="../Pictures/"+element.title;
+        element.style.background = 'blue';
+        flag = index;
+      }
+      function playNext(){
+        cleanBackground(li_arr);
+        change(li[flag%5],flag + 1);
+        console.log('playNext');
+      }
+        var timer = setInterval(playNext,1000);
+  </script>
+</body>
+</html>

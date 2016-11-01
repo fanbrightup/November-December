@@ -1,0 +1,22 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'link' ]
+2 info using npm@4.0.1
+3 info using node@v6.9.1
+4 verbose config Skipping project config: /home/try/.npmrc. (matches userconfig)
+5 verbose linkPkg /home/try
+6 verbose stack Error: ENOENT: no such file or directory, open '/home/try/package.json'
+6 verbose stack     at Error (native)
+7 verbose cwd /home/try/Desktop/November-December/tmp
+8 error Linux 4.4.0-45-generic
+9 error argv "/usr/bin/nodejs" "/usr/bin/npm" "link"
+10 error node v6.9.1
+11 error npm  v4.0.1
+12 error path /home/try/package.json
+13 error code ENOENT
+14 error errno -2
+15 error syscall open
+16 error enoent ENOENT: no such file or directory, open '/home/try/package.json'
+17 error enoent ENOENT: no such file or directory, open '/home/try/package.json'
+17 error enoent This is most likely not a problem with npm itself
+17 error enoent and is related to npm not being able to find a file.
+18 verbose exit [ -2, true ]
