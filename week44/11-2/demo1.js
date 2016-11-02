@@ -24,3 +24,4 @@ exec('git add .');
  echo('Error: Git commit failed');
  exit(1);
 }
+exec('git push');
