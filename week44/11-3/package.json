@@ -1,0 +1,14 @@
+{
+  "name": "11-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "install":"enki/install.js",
+    "postinstall":"enki/postinstall.js",
+    "uninstall":"enki/uninstall.js"
+   },
+  "author": "",
+  "license": "ISC"
+}
