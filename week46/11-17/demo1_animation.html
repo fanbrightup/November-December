@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>动画</title>
+    <style media="screen">
+    /*动画部分*/
+    @keyframes example{
+      0%{
+        background-color: red;
+        left:0px;
+        top:0px;
+      }
+      25%{
+        background-color: yellow;
+        left:500px;
+        top:0px;
+      }
+      50%{
+        background-color: blue;
+        left:500px;
+        top:500px;
+      }
+      75%{
+        background-color: green;
+        left:0px;
+        top:500px;
+      }
+      100%{
+        background-color: red;
+        left:0px;
+        top:0px;
+      }
+    }
+      .ani_box{
+        width:150px;
+        height:150px;
+        position:relative;
+        background-color: red;
+        animation-name: example;
+        animation-duration:3s;
+        animation-iteration-count: infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ani_box">
+      这是不断移动的盒子,会在四个脚不停的移动。
+    </div>
+  </body>
+</html>
