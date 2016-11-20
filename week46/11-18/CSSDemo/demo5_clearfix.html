@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .container{
+        border:1px solid red;
+      }
+      .left{
+        float:left;
+        border:1px solid blue;
+        height:150px;
+      }
+      .right{
+        height:260px;
+        float:right;
+        border:1px solid blue;
+      }
+      .clearfix:after{
+        content:".";
+        display:block;
+        clear:both;
+      }
+      .foot{
+        /*clear:both;*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container ">
+      这是container
+      <div class="left clearfix">
+        left`
+        left`
+      </div>
+      <div class="right clearfix">
+        right
+        right
+      </div>
+      <div class="foot">
+
+      </div>
+      这是尾部
+    </div>
+  </body>
+</html>

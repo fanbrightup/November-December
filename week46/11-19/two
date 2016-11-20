@@ -1,0 +1,4 @@
+  PID TTY          TIME CMD
+12652 pts/0    00:00:01 zsh
+19224 pts/0    00:00:00 ps
+19225 pts/0    00:00:00 tee
