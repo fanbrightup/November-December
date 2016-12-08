@@ -1,0 +1,24 @@
+1 http服务器自己实现几种简单的路由选择.if 或switch
+2 模块话将代码分割
+3 表单提交,及对相应的路由进行处理,响应
+4 实现路由图片,网页展示
+5 DNS解析简单小项目,实现对域名查找ip,dns模块
+6 同步回调,异步回调.不见得回调就一定是异步的.及对回调的一些思考
+      一个函数的参数是另一个函数,其实发生在主函数内进行了一次参数函数的调用,函数执行发生在主函数内.
+        不在回调函数内.
+7 下午进行了几个小时的对路由的思考练习,收获颇丰,一些长久的困扰也迎刃而解.
+8 对req.url的query部分有了进一步的认识.
+9 req.pipe(res) 不用调用res.end()
+10 为什么是req.setEncoding('utf8')不甚懂,我认为是res的,进一步查
+11 对浏览器发送的/favicon.ico请求,进行捕获,然后return,即可忽略这个请求
+12 一定记住path是以 / 开头的  path 比 pathname多了 search的部分
+13 当写完需要分配的路由后,需要最后对所有其他的路由进行一次不遗漏的捕获,否则未知的路由会导致服务器崩溃
+14 var pathname = url.parse(req.url).pathname;  // pathname小写
+15   var query = url.parse(req.url).query;
+    var param = qs.parse(query);
+    // console.log(typeof query);
+    console.log(param);
+    res.end(JSON.stringify(param));  //不能直接发送param这个对象,只能发送字符串或者Buffer数据
+          res不能发送数组,不能发送对象,要将数据格式化为string或Buffer后才能发送.对res发送的数据要特别留神.我被坑了很多次.
+16 使用post从表单上传的数据要通过data事件和end事件 以数据池的方式来接收,不能直接从req的属性当中拿到这个值.
+17 == 写成赋值=   有犯了几次错误

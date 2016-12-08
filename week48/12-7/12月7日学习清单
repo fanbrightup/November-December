@@ -1,0 +1,20 @@
+1 utils.inherits(son,father);
+2 http客户端  var req = http.request(options,(res)=>{ do somethig })  req.end();
+    注意http.request() 和 http.get() 模拟浏览器
+3 res.setEncoding('utf8');  转换编码
+4 url模块parse后query比search少一个问号. 主机名到?前都是pathname,包括/some/url/  前后的/符号
+      parse可以接第二个参数,来决定是否解析query中的string  ,解析出来的都是字符串.包括数字
+5 所有的流都是EventEmitter的实例,都可以主动触发事件
+6 缓冲池模型.
+    var spool = '';
+    stream.on('data',(data)=>{
+      spool+=data;
+    });
+    stream.on('end',()=>{
+      console.log(spool);
+    })
+  确保当所有的数据都接收完成后在进行下一步的操作.
+
+
+7 fs.unlink(filepath)  删除文件
+8 Buffer 创建后定长,可使用setEncoding('utf8')  或 toString()来进行转换

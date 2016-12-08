@@ -1,0 +1,30 @@
+一   curl 发起 POST DELETE PUT GET 等四个RESTFUL服务
+二   简单的https服务器生成
+三   Content-Type和Content-Length
+四   http服务器简单搭建
+五   设置首部 res.setHeader(field,value),res.getHeader(field);
+六   计算实体长度,body.length属性和Buffer.byteLength(body)的区别
+七   设置statusCode=302 配合 res.setHeader("Location",url);来实现自动跳转,缺一不可.
+八   res.setEncoding('utf8');放在data事件前,将收到的数据块从Buffer对象变为utf8字符串
+九   url.parse()   req.url   query 部分
+十   delete items[i] 会留下空位, items.splice(i,1)不会留下空位,后边的会补到前边
+
+十一 path模块join()  url模块parse()
+十二 fs.createReadStream('./source.txt')   fs.createWriteStream('./copy.txt');
+十三 stream.pipe()    req是ReadableStream   res是WriteableStream
+十四 curl -i  或 --include 可以将响应头打出
+十五 流有预先定义的data和end事件,必须要监听error事件,否则会搞垮服务器
+十六 fs.stat(filepath,(err,stat)=>{先处理错误,无错误就执行流操作,})
+        res.setHeader("Content-Length",stat.size);可以使用stat.size来设置长度
+        stat是个包含按个文件的一些信息的对象
+十七 multipart/form-data  用在上传文件时.
+    application/x-www-form-urlencoded  上传表单的默认值
+十八 上传表单的name属性的值会是querystring.parse()之后得到的对象的一个属性名.可用来获取在
+      那个输入框中的信息.    注意  querystring模块用于解析post的数据
+十九 formidable上传  流式解析   文件的input标签上传类型type="file" 文本的上传类型type="text"
+                        最后有一个 input  type="submit"来提交
+        var form = new formidable.IncomingForm();
+        form.on  监听fields  文本框上传成功时
+                    file事件  文件上传结束时
+                    progress事件  文件上传进度
+    文件默认上传到/tmp文件夹下.需要进一步的处理,移动文件位置和改名,需要在复习一下fs的操作api
