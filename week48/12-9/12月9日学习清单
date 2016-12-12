@@ -1,0 +1,20 @@
+1 exports与module.exports
+2 this在模块中丢失问题
+3 class MyStream extends EventEmitter{
+  constructor(name){
+    super();   // 如果要添加自己的构造函数到新继承的类中,则一定要在构造函数中先显式的调用super()父类的构造函数
+    this.name = name;
+  }
+4 对class的实例方法,静态方法的练习
+          static show(){  // 静态方法只能类调用
+            console.log("这是静态方法");
+          }
+          write(data){        // 定义实例方法   直接写方法名(参数)  就行了,不用写function
+            this.emit("data",data);
+          }
+5 当同步执行时,要先监听在捕获.
+6 单例模式的一种实现,使用getInstance方法来获取实例,对当前进行判断,是否已经有了一个实例,
+          如果没有,就new一个,如果有,就直接返回存在的实例,不通过new来直接获取实例.保存那个唯一实例
+          的变量要放在类定义的外部.
+7 require自定义的模块,可以不写.js但是必须要加上相对路径或绝对路径,而原生的直接写名字即可.
+8 对class的extends有了些认识.可以在子类中定义同名函数来覆写父类方法,不需要使用utils.inherits(子,父)方法了

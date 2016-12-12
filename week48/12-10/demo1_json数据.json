@@ -1,0 +1,10 @@
+{
+  "Name":"Joe shmoe",
+  "Salary":100000.50,
+  "Age":35,
+  "Married":true,
+  "owner":{
+    "cellphone":"222-222-2222",
+    "color":"red"
+  }
+}

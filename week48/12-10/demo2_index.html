@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>姓名查询</title>
+  </head>
+  <body>
+    <div class="">
+      请输入姓名:<input type="text" id="inputName" name="name" value="">
+      <p>
+        欢迎<span id="showName">游客</span>到来
+      </p>
+    </div>
+    <script type="text/javascript">
+    var inputName = document.querySelector("#inputName");
+    var showName = document.querySelector("#showName");
+      inputName.addEventListener("keyup",search);  // 当在html标签中写时,为onkeyup,on开头事件都是小写
+      function search(){
+        var name = inputName.value;
+        var XHR = new XMLHttpRequest();
+        XHR.open("POST","http://fan:3000/search");
+        XHR.send(name);
+        XHR.onreadystatechange = function(){
+          if(4 == XHR.readyState){
+            // alert(XHR.responseText);
+            showName.innerHTML = XHR.responseText;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

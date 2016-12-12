@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button type="button" id="ajaxBtn" name="button">查询</button>
+    <button type="button" id="jsonBtn" name="button">显示json</button>
+    <div class="">
+      显示消息:
+      <p class="message">
+        原消息
+      </p>
+      <p class="jsonMessage">
+        json消息
+      </p>
+    </div>
+    <script type="text/javascript">
+    "use strict";
+    var ajaxBtn = document.querySelector("#ajaxBtn");
+    var message = document.querySelector(".message");
+    var jsonBtn = document.querySelector("#jsonBtn");
+    var jsonMessage = document.querySelector(".jsonMessage");
+    ajaxBtn.addEventListener("click",getMessage);
+    jsonBtn.addEventListener("click",getJsonMessage);
+    //  使用ajax异步更新
+    function getMessage(){
+      var XHR = new XMLHttpRequest();
+      XHR.open("GET","http://fan:3000/select",true);
+      XHR.send(null);
+      XHR.onreadystatechange = function(){
+        if(4 == XHR.readyState){
+          message.innerHTML = XHR.responseText;  // 这里responseText和response都可以
+          // alert(XHR.getResponseHeader("Connection"));  // 只显示那些正规的,不显示自定义的.
+                                                       //而且连续显示了三遍,我不懂为什么,解决了,因为写成了赋值4,
+                                                       // 所以连续显示了3遍.还是需要将==符号左右颠倒
+         console.log(XHR)
+         console.log(XHR.getAllResponseHeaders());
+         // 只有三个头信息
+         //Connection: keep-alive
+         //Date: Sat, 10 Dec 2016 05:48:59 GMT
+         //Content-Length: 11
+
+        }
+      }
+    }
+    function getJsonMessage(){
+      var XHR = new XMLHttpRequest();
+      XHR.open("GET","http://fan:3000/json");
+      XHR.send();
+      XHR.onreadystatechange = function(){
+        if(4 == XHR.readyState){
+          var data = XHR.responseText;
+          var jsonData = JSON.parse(data);
+          var str = `Person Name : ${jsonData.Name} <br> Age : ${jsonData.Age} <br>Married: ${jsonData.Married}`;
+          // alert(str);
+          // jsonMessage.innerHTML = str;
+          var strOutput = '';
+          for(var property in jsonData){
+            if("owner" == property){
+              strOutput += "owner cellphone " + jsonData[property].cellphone + "<br/>";
+              strOutput += "owner cellphone color " + jsonData[property].color+ "<br/>";
+            }else{
+              strOutput += property +"= " + jsonData[property] + "<br/>";
+            }
+          }
+          // alert("hh")
+            // 有什么调试手段能帮我找到这个错误
+          jsonMessage.innerHTML = strOutput;   // html只大写了h导致一直没有调试出来
+
+          console.log(strOutput)
+        }
+      }
+    }
+    </script>
+  </body>
+</html>

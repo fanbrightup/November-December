@@ -1,0 +1,41 @@
+1 buffer缓存
+    es6新 TypedArray  (Uint8Array   Uint16Array) 注意它的.buffer 属性,赋给Buffer后,会是传引用,会共享内存空间
+    Buffer用于操作,读取二进制数据.Buffer实现了Uint8Array相关API.
+    创建后定长.
+    new Buffer(数字/string/Buffer/Array/array-like等),但是不接受对象.
+    buf.toString("hex") 16进制       buf.toString("base64")
+    buf.toString("binary") 将原始二进制数据编码为字符串,最后的结果为字符串
+    buf.toString("ascii") 7位的ASCII编码  buf.toString("utf8")
+
+    Buffer类方法
+      Buffer.byteLength()
+      Buffer.compare();
+      Buffer.concat();
+      Buffer.isBuffer();
+      Buffer.isEncoding('utf8')  检查utf8是否可用
+2  Nodejs四种流
+  Readable    http请求
+  Writeable    http响应
+  Duplex(双向流)    socket    Zlib  crypto
+  Transform(转换流)  一种输出由输入计算的双向流,   Zlib   crypto
+3 fs模块
+  异步函数的第一个参数为err,当没错时,err为null或undefined
+  同步函数的错误会抛出,所以,需要使用try  catch 来进行捕获
+  fs.access(path,(status)=>{})  回调一个参数,当有访问权限时返回null,没有权限时,返回错误原因
+  fs.appendFile()  追加数据
+4 path模块
+    path.join("/a/","/b/","/c","d","e.txt"); // join方法可以很好的帮助处理分割符的问题,自行添加删除.
+                                          //  join方法的参数都是字符串,不能是对象
+                                          path模块主要处理字符串,不会对路径进行验证,所以应该都是同步的
+5  nginx静态文件服务器
+    下面的匹配规则不懂,
+   location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {
+    	root    /home/try/Desktop/November-December/week48/12-11/css;
+    	expires    15s;   设置资源的有效期
+    }
+    location ~(favicon.ico){
+    	break;    忽略掉所有的浏览器发送的/favicon.ico
+    }
+    在index.html的链接中直接写上所需的文件名即可,不用写路径了.
+6 主要练习了nodejs静态文件的支持,思路是根据请求路径有无后缀名来进行区分,一般没有问题,设定一个专门的文件夹存放静态文件
+  如css,js等,当有后缀名时,加上默认的static路径,然后读取发送即可.实现静态文件的支持

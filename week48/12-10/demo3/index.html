@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!--必须要写rel="stylesheet"  否则不会被识别为样式表  -->
+    <!--单独的一个link只是告诉浏览器有一个链接,而不是样式表链接  -->
+    <link rel="stylesheet" href="demo3.css" media="screen" title="no title">
+    <style media="screen">
+    /* 使用 @import 空格 url(路径,引号可选) 如
+      @import url(extern.css);
+      @import url(http://www.mystyle.com/style.css);
+      @import url(/style/extern.css);   路径对就行,注意空格,
+      并且@import必须放在style标签内的首行,否则不会起效.可以有效避免覆盖问题.
+      但是也可以再写一个style标签单独来放@import 
+    */
+    /*@import url(./extern.css);*/
+      .one{
+        color:red;
+      }
+    </style>
+    <style media="screen">
+      @import url(extern.css);
+    </style>
+  </head>
+  <body>
+    <p class="one">test</p>
+    <p class="two">test</p>
+    <p class="three">test</p>
+    <p class="four">test</p>
+    <p class="five">test</p>
+  </body>
+</html>
