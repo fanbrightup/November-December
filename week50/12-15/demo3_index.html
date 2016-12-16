@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- 一个小bug因为src写成了scr导致一直读不到socket.io  -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <!--使用nginx来提供静态文件,在配置表中已经指明了static文件夹,所以在这里就只写文件名就好了  -->
+    <link rel="stylesheet" href="/static/demo3_main.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/static/demo3_footer.css" media="screen" title="no title">
+    <script type="text/javascript">
+     //  因为使用了nginx的反向代理,所以io()内要加参数,否则连接的我也不知道是哪.反正会在调试栏报错.
+     //  所以手动的显式的指明需要他连接的地址和端口.
+        var socket = io("http://localhost:8000");
+        socket.on("reload",()=>{
+          window.location.reload();
+        })
+        socket.on("message",(msg)=>{
+          alert("收到了信息"+msg)
+        })
+        socket.on("css",(linkNode)=>{
+          addNode(linkNode);
+        })
+    function addNode(linkHref){
+       var head = document.querySelector("head");
+        var link = document.createElement('link');
+        link.setAttribute('rel','stylesheet');
+        link.setAttribute('type','text/css');
+        link.setAttribute('href',linkHref); // 注意是href,二期不能向字符串式的添加,要显示的创键节点.
+        head.appendChild(link);
+      }
+      // var main = "demo3_main.css";
+      // var footer = "demo3_footer.css";
+    // addNode(main);
+    // addNode(footer);
+    </script>
+  </head>
+  <body>
+    <h1>这是h1标签</h1>
+    <p>
+      这是p标签
+    </p>
+    <footer>这是尾footer</footer>
+
+  </body>
+</html>
