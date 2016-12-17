@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+    </style>
+    <script type="text/javascript" src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app-5">
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+    <div id="app-6">
+      <p>{{ message }}</p>
+      <input v-model="message">
+    </div>
+    <div class="" id="app-6-test">
+        <h1>这里显示上面值的变化</h1>
+        <p>
+        {{getMsg}}
+      </p>
+    </div>
+
+
+    <script type="text/javascript">
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+          message: 'Hello Vue.js!'
+        },
+        methods: {
+          reverseMessage: function () {
+            this.message = this.message.split('').reverse().join('')
+          }
+        }
+      })
+
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+//  第二种方法
+    // 跨元素不能响应,但是我可以借助于Vue实例的$watch方法来监控某个值的变化,从而实现动态响应
+    // app6.$watch('message',function(newVal,oldVal){
+    //   app6Test.message = newVal;
+    // })
+    var app6Test = new Vue({
+      el:"#app-6-test",
+      data:{
+        message:app6.message
+      },
+//   第三种方法使用计算属性,会调用缓存,当所依赖的数据发生变化是,他会自动更新
+      computed:{
+        getMsg:function (){
+          return app6.message;
+        }
+      }
+    })
+    </script>
+  </body>
+</html>
