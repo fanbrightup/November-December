@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>代办事项</title>
+    <link rel="stylesheet" href="static/css/main.css" media="screen" title="no title">
+  </head>
+  <body>
+    <div class="container">
+
+
+      <div class="add_head" id="add_list" >
+        <textarea class="add_text" name="name" rows="4" cols="40" v-model="text"
+            placeholder="请输入要添加的代办事项:" >{{text}}</textarea>
+        <br>
+        <button class="add_btn" type="button" v-on:click="add" name="button">添加</button>
+        <button class="add_clear_btn" type="button" v-on:click="clear" name="button">重写</button>
+      </div>
+
+      <main id="main">
+          <ol>
+            <li v-for="item in items">
+              <span v-if="item.done">完成</span>
+              <span v-else="item.done">待办</span>
+              <input type="checkbox" @click="change(item)"  name="name" value="">
+                {{item.text}} </li>
+          </ol>
+      </main>
+    </div>
+    <script type="text/javascript" src="static/javascript/vue.js"></script>
+    <script type="text/javascript" src="static/javascript/addList.js"></script>
+  </body>
+</html>

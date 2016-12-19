@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../vue.js"></script>
+  </head>
+  <body>
+    <div id="entry_1">
+      <input type="checkbox" name="one" v-model="checked">
+      <input type="text" name="name" value="">
+      <label for="one" id="entry_1_text"></label>
+    </div>
+  <script type="text/javascript">
+    var temp1 = new Vue({
+      el:"#temp1",
+      data:{
+        number:1,
+        checked:false
+      },
+      computed:{
+        done:function(){
+          return  this.checked?`第${this.number}条完成`:`第${this.number}条未完成`;
+            // 要借助this来取得checked
+        }
+      }
+    })
+  </script>
+  </body>
+</html>

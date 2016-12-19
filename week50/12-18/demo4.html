@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!--在html标签中要加change()  括号  -->
+    <input type="checkbox"   id="box" onclick="change()"  name="name" value="sd">
+    <p id="p_show">
+
+    </p>
+    <script type="text/javascript">
+    var box = document.querySelector("#box");
+    var p = document.querySelector("#p_show")
+    p.innerHTML = '选项栏为'+box.checked;
+      function change(){
+        // if(box.checked){
+          p.innerHTML ='选项栏为'+box.checked
+        // }
+
+        // alert(box.checked);
+
+      }
+    </script>
+
+  </body>
+</html>

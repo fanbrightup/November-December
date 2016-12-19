@@ -1,0 +1,29 @@
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+这是测试文件a;
+var fs = require('fs');
+
+function readFile(file){
+    return new Promise(function(resolve, reject){
+        fs.readFile(file, function(err, result){
+	    if(err){
+		reject(err);
+	    } else {
+		resolve(result);
+	    }
+	});
+    });
+}
+
+readFile('./a.txt').then(function(result){
+    //显示第一个文件的读取结果
+    console.log(result.toString());
+    //返回另一个Promise对象实例
+    return readFile('./b.txt');
+}).then(function(result){
+    //显示第二个文件的读取结果
+    console.log(result.toString());
+}).catch(function(error){
+    //文件读取失败
+    console.log(error);
+});
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

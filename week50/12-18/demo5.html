@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../vue.js">
+    </script>
+  </head>
+  <body>
+    <div class="" id="app-2">
+      <span :title="message" :id="id">11111</span>
+    </div>
+    <p id="1">
+
+    </p>
+    <script type="text/javascript">
+      var app2 = new Vue({
+        el:"#app-2",
+        data:{
+          message:"hh",
+          number:1
+        },
+        computed:{
+          id:function(){
+            return  'num'+this.number
+          }
+        }
+
+      });
+
+      var a = document.querySelector("num1");
+      console.log(a);
+    </script>
+  </body>
+</html>

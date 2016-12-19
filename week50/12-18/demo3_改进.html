@@ -1,0 +1,111 @@
+<!--
+  现在我有一个想法,不去管点哪里,对整个包括文字和选择框添加click事件,设法取得更新checked的值,
+  然后点击就更新它
+
+  -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /**{
+        margin:0px;
+        padding:0px;
+      }*/
+      .container{
+        width:600px;
+        height:500px;
+        border:1px solid orange;
+        margin:0px;
+        padding:0px;
+      }
+      /*  以add开头的类为头部的样式*/
+      .add_head{
+        border-bottom:2px solid black;
+      }
+      .add_text{
+        width:250px;
+      }
+      .add_btn{
+        height:40px;
+        width:200px;
+      }
+      .add_clear_btn{
+        margin:0px;
+        padding:0px;
+        height:40px;
+        width:50px;
+      }
+      textarea{
+        display:block;
+      }
+      /*下部信息的样式表*/
+      #main ol{
+        list-style:none;
+      }
+    </style>
+    <script type="text/javascript" src="../vue.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+
+
+      <div class="add_head" id="add_list" >
+        <textarea class="add_text" name="name" rows="4" cols="40" v-model="text"
+            placeholder="请输入要添加的代办事项:" >{{text}}</textarea>
+        <br>
+        <button class="add_btn" type="button" v-on:click="add" name="button">添加</button>
+        <button class="add_clear_btn" type="button" v-on:click="clear" name="button">重写</button>
+      </div>
+
+      <main id="main">
+          <ol>
+            <li v-for="item in items">
+              <span v-if="item.done">完成</span>
+              <span v-else="item.done">待办</span>
+              <!--这里将item传到change()函数中,困扰了我一个多小时的如何在v-for中获取当前遍历对象
+              属性里的item不加{{}},Mustache语法,不能出现下html标签的属性中,所以直接在v-on或v-bind后调用item即可
+              -->
+              <input type="checkbox" @click="change(item)"  name="name" value="">
+                {{item.text}} </li>
+          </ol>
+      </main>
+    </div>
+    <script type="text/javascript">
+
+      var main = new Vue({
+        el:"#main",
+        data:{
+          items:[]
+        },
+        methods:{
+          change:function(item){
+            item.done = item.done?false:true;
+          }
+        }
+      });
+
+
+      var add_list = new Vue({
+        el:"#add_list",
+        data:{
+          text:'',
+          number:0,
+          done:false
+        },
+        methods:{
+          add:function(){
+            this.number++;
+            main.items.push({'number':this.number,'text':this.text,'done':this.done});
+            this.text = '';
+          },
+          clear:function(){
+            this.text = '';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

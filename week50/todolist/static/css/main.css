@@ -1,0 +1,35 @@
+/**{
+  margin:0px;
+  padding:0px;
+}*/
+.container{
+  width:600px;
+  height:500px;
+  border:1px solid orange;
+  margin:0px;
+  padding:0px;
+}
+/*  以add开头的类为头部的样式*/
+.add_head{
+  border-bottom:2px solid black;
+}
+.add_text{
+  width:250px;
+}
+.add_btn{
+  height:40px;
+  width:200px;
+}
+.add_clear_btn{
+  margin:0px;
+  padding:0px;
+  height:40px;
+  width:50px;
+}
+textarea{
+  display:block;
+}
+/*下部信息的样式表*/
+#main ol{
+  list-style:none;
+}
