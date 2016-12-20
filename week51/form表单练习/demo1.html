@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!--注意onsubmit="return fn()"这个是写在form标签里的,而不是那个点击的标签里
+        return 不能少,而且具体提不提交要根据fn()函数的具体返回结果true/false来确定
+        onsubmit这个事件很特殊,注意
+  -->
+    <form class="" action="index.html" method="post" onsubmit="return subFn()">
+    <label for="username">用户名</label>
+    <input id="username" type="text" name="username"  required value="" autofocus tabindex=1>
+    <br>
+    <label for="userpassword">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+    <input id="userpassword" type="password" name="userpassword" required tabindex=2 value="">
+    <br>
+    <input type="submit"   value="登录">
+    <input type="button"  onclick="register()" value="注册">
+  </form>
+    <p name="a"> a </p>
+    <p name="a"> b </p>
+    <p name="a"> c </p>
+    <p name="a"> d </p>
+    <script type="text/javascript" src="./User.js"></script>
+    <script type="text/javascript">
+      var arrP = document.getElementsByName("a");  // 通过name属性来找
+      var username = document.querySelector('#username').value;
+      var userpassword = document.querySelector('#userpassword').value;
+      // console.log(arrP);
+      // 提交验证函数
+      function varify(name,password){
+        var result = name.length<10 && password.length<10;
+        if(result){
+          return true;
+        }else{
+          alert("wrong");
+          return false;
+        }
+      }
+      function subFn(){
+        varify(username,userpassword);
+        if(check(username,userpassword)){
+          alert("登录成功");
+        };
+        return false;  // 这里要return false 来确保阻止提交
+      }
+      // 注册函数
+      function register(){
+        varify(username,userpassword);
+        addUser(username,userpassword);
+
+      }
+    </script>
+  </body>
+</html>

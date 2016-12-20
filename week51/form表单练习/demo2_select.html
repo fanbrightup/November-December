@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    *{
+      margin:0px;
+      padding:0px;
+    }
+    .container{
+      position: relative;
+      margin:0 auto;
+      background-color: red;
+      height:400px;
+      width:400px;
+    }
+    .red{
+      background-color: red;
+    }
+    .yellow{
+      background-color: yellow;
+    }
+    .blue{
+      background-color: blue;
+    }
+    .green{
+      background-color: green;
+    }
+    .big{
+      height:800px;
+      width:800px;
+    }
+    .middle{
+      height:400px;
+      width:400px;
+    }
+    .small{
+      height:200px;
+      width:200px;
+    }
+    .randomBtn{
+      position:relative;;
+      top:40px;
+      width:100%;
+      height:40px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <!--一个老问题,如何获取单选框的值  -->
+    <input type="radio" name="size"  value="big"> big
+    <input type="radio" name="size"  value="middle"> middle
+    <input type="radio" name="size" value="small">small
+    <br>
+    <select  class="" name="ff" autofocus onchange="changeBg()">
+      <option >red</option>
+      <option >yellow</option>
+      <option> blue</option>
+      <option> green</option>
+    </select>
+    <button type="button" class="randomBtn" onclick="randomChange()">手气不错</button>
+  </div>
+    <script type="text/javascript">
+      window.onload=randomChange;
+      // 不设置默认值,全都使用随机值.注意函数名后没有括号.相当于传了一个回调函数来响应onload事件
+      var selectNode = document.getElementsByName('ff')[0];
+      var container = document.querySelector(".container");
+      var arrSize = document.getElementsByName("size");
+      var colorList = ['red','yellow','blue','green'];
+      var sizeList = ['big','middle','small'];
+      arrSize.forEach((ele)=>{
+        // console.log(ele.value);
+        var size = ele.value;
+        // console.log(size);
+        // BUG: 这里我在后边的回调函数中传了个size参数,我忘了这是异步回调,传的那个size会由click事件出发,结果
+        //  size中保留的是mouseEvent事件的坐标信息,这里不应该在回调函数中传递参数
+        ele.addEventListener("click",()=>{
+          // console.log(size);
+          changeBg(size);
+        });
+    })
+    function changeBg(size){
+      // size值可能没有
+      var color = selectNode.value;
+      var mySize = '';
+      arrSize.forEach((ele)=>{
+        if(ele.checked) mySize = ele.value;
+      })
+      // 要使用这里来提供一个size的默认值
+      size = size || mySize;
+      var strClass = `container ${size} ${color}`
+      container.className = strClass ;
+    }
+// 随机设置颜色和尺寸
+    function randomChange(){
+      var　colorNum = Math.ceil(Math.random()*4)-1; // 获得0到3
+      var sizeNum = Math.ceil(Math.random()*3)-1; // 获得0到2
+      var color = colorList[colorNum];
+      var size = sizeList[size];
+      arrSize[sizeNum].checked = true;
+      selectNode.value = color;
+      container.className = `container ${colorList[colorNum]} ${sizeList[sizeNum]}`;
+    }
+    </script>
+  </body>
+</html>

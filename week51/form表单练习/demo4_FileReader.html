@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>文件域</title>
+  </head>
+  <body>
+    <p>
+      原
+    </p>
+    <input type="file" name="name" value="">
+    <script type="text/javascript">
+      var input = document.querySelector("input");
+      var file = null;
+      var p = document.querySelector("p");
+      input.addEventListener("change",()=>{
+          Array.prototype.forEach.call(input.files,(file)=>{
+            var reader = new FileReader();
+            reader.addEventListener("load",()=>{
+              console.log("File",file.name,"starts with",reader.result.slice(0,20));
+            });
+            reader.readAsText(file);
+          })
+
+      })
+    </script>
+  </body>
+</html>
