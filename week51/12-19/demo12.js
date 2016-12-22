@@ -1,6 +1,6 @@
-var arr = [3,4,5,3,2,1]
+var arr = [{k:'a',v:4},{k:'b',v:5},{k:'c',v:3}]
 arr.sort((a,b)=>{
-    if(a>b){
+    if(a.v>b.v){
       return true;
     }else{
       return false;
